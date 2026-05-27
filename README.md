@@ -1,2 +1,4 @@
-# uc3m
-Analyses for UC3M course papers
+# Course Work for UC3M
+
+## Table of Contents
+1. Social Stratification I (ss1)

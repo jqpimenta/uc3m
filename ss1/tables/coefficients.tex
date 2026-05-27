@@ -1,0 +1,49 @@
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+entry=none,label=none,
+note{}={+ p \num{< 0.1}, * p \num{< 0.05}, ** p \num{< 0.01}, *** p \num{< 0.001}},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]},
+hline{2}={1-4}{solid, black, 0.05em},
+hline{24}={1-4}{solid, black, 0.05em},
+hline{1}={1-4}{solid, black, 0.08em},
+hline{33}={1-4}{solid, black, 0.08em},
+column{2-4}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& Main & Interaction (Relative Deprivation) & Interaction (Risk Aversion) \\
+(Intercept) & \num{6.276}*** & \num{6.280}*** & \num{6.027}*** \\
+& (\num{0.312}) & (\num{0.273}) & (\num{0.312}) \\
+Relative Deprivation & \num{-0.232}*** &  &  \\
+& (\num{0.055}) &  &  \\
+Risk Aversion & \num{0.068}* &  & \num{0.083}* \\
+& (\num{0.033}) &  & (\num{0.033}) \\
+Sex & \num{-0.374}*** & \num{-0.396}*** & \num{-0.382}*** \\
+& (\num{0.079}) & (\num{0.079}) & (\num{0.080}) \\
+Age & \num{-0.002} & \num{-0.002} & \num{-0.003} \\
+& (\num{0.002}) & (\num{0.002}) & (\num{0.002}) \\
+Education & \num{-0.227}*** & \num{-0.270}*** & \num{-0.276}*** \\
+& (\num{0.039}) & (\num{0.040}) & (\num{0.040}) \\
+Income & \num{0.028}*** & \num{0.017}+ & \num{0.018}* \\
+& (\num{0.009}) & (\num{0.009}) & (\num{0.009}) \\
+Relative Reprivation, centred &  & \num{-0.289}*** &  \\
+&  & (\num{0.058}) &  \\
+Class, centred &  & \num{0.200}** & \num{-0.040} \\
+&  & (\num{0.065}) & (\num{0.177}) \\
+Relative Reprivation, centred:Class\_c &  & \num{0.023} &  \\
+&  & (\num{0.065}) &  \\
+Risk Aversion:Class\_c &  &  & \num{0.039} \\
+&  &  & (\num{0.043}) \\
+Num.Obs. & \num{2136} & \num{2136} & \num{2136} \\
+R2 & \num{0.054} & \num{0.057} & \num{0.047} \\
+R2 Adj. & \num{0.052} & \num{0.054} & \num{0.044} \\
+AIC & \num{8446.6} & \num{8442.1} & \num{8464.6} \\
+BIC & \num{8491.9} & \num{8493.1} & \num{8515.6} \\
+Log.Lik. & \num{-4215.284} & \num{-4212.040} & \num{-4223.321} \\
+F & \num{20.188} & \num{17.944} & \num{14.693} \\
+RMSE & \num{1.74} & \num{1.74} & \num{1.75} \\
+Std.Errors & HC3 & HC3 & HC3 \\
+\end{talltblr}
+\end{table}
