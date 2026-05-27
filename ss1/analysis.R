@@ -182,12 +182,12 @@ plot(interaction2, which = 2)
 ## Although the Shapiro-Wilk test was statistically significant, the Q-Q plots inspection showed 
 ## that there are no substantial deviations
 
-## Durbin-Watson Test
+# Durbin-Watson Test
 dwtest(main)
 dwtest(interaction1)
 dwtest(interaction2)
 
-## Cook's Distance
+# Cook's Distance
 plot(main, which = 4)
 plot(interaction1, which = 4)
 plot(interaction2, which = 4)
