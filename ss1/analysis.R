@@ -7,7 +7,7 @@ library(ggplot2)
 library(gridExtra)
 library(interactions)
 
-df <- read_dta("/Users/jii/Downloads/ZA8833_v1-0-0.dta/ZA8833_v1-0-0.dta")
+df <- read_dta("/Users/jii/Documents/LocalData/RawData/ZA8833_v1-0-0.dta")
 
 # Data cleaning -------------------------------------------------------------------------------
 
@@ -99,12 +99,14 @@ modelsummary(
     "id02"  = "Class",
     "id01"  = "Relative Deprivation",
     "id02_c" = "Class, centred",
-    "id01_c" = "Relative Reprivation, centred",
+    "id01_c" = "Relative Deprivation, centred",
     "vg10"  = "Risk Aversion",
     "sex"  = "Sex",
     "age" = "Age",
     "educ" = "Education",
-    "incc"  = "Income"
+    "incc"  = "Income",
+    "id01_c:id02_c" = "Relative Deprivation, centred × Class, centred",
+    "vg10:id02_c" = "Risk Aversion × Class, centred"
   ),
   output  = "ss1/tables/coefficients.tex"
 )
@@ -191,4 +193,4 @@ dwtest(interaction2)
 plot(main, which = 4)
 plot(interaction1, which = 4)
 plot(interaction2, which = 4)
-# Given the large sample size, the influential cases were retained
+## Given the large sample size, the influential cases were retained
