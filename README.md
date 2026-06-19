@@ -6,7 +6,7 @@
 
 ## Notes on Replicating the Analyses
 
-All data needs to be downloaded from the original sources first and the paths adapted. If there is any problem with finding the original data files, I can provide them through email.
+All data need to be downloaded from the original sources first and the paths adapted. If there is any problem with finding the original data files, I can provide them through email.
 
 ### AQMSS2
 Create the data in the following order (all files are in the create_data folder):

@@ -21,8 +21,8 @@ summary(m2)
 
 # Marginal effects
 
-coefs    <- coef(m2)
-vcv      <- vcov(m2)
+coefs <- coef(m2)
+vcv <- vcov(m2)
 
 beta_pay <- coefs["log_payment"]
 beta_int <- coefs["log_payment:rel_deprivation"]
@@ -62,14 +62,14 @@ exp(coef(mP2)["log_payment"])
 
 # Marginal effects
 
-coefs    <- coef(mP2)
-vcv      <- vcov(mP2)
+coefs <- coef(mP2)
+vcv <- vcov(mP2)
 
 beta_pay <- coefs["log_payment"]
 beta_int <- coefs["log_payment:rel_deprivation"]
-cov_pi   <- vcv["log_payment", "log_payment:rel_deprivation"]
-var_pay  <- vcv["log_payment", "log_payment"]
-var_int  <- vcv["log_payment:rel_deprivation", "log_payment:rel_deprivation"]
+cov_pi <- vcv["log_payment", "log_payment:rel_deprivation"]
+var_pay <- vcv["log_payment", "log_payment"]
+var_int <- vcv["log_payment:rel_deprivation", "log_payment:rel_deprivation"]
 
 rd_grid <- seq(
   quantile(panel$rel_deprivation, .05, na.rm = TRUE),
@@ -164,7 +164,7 @@ max(fitted_vals)
 
 # Nested FE comparison (justifying two-way FE)
 
-m2_pooled    <- feols(violent_event ~ log_payment * rel_deprivation,
+m2_pooled <- feols(violent_event ~ log_payment * rel_deprivation,
                       data = panel, cluster = ~muni_norm)
 m2_unit_only <- feols(violent_event ~ log_payment * rel_deprivation | muni_norm,
                       data = panel, cluster = ~muni_norm)
