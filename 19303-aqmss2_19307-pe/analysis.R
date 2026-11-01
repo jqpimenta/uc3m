@@ -21,6 +21,11 @@ summary(m2)
 
 # Marginal effects
 
+Sys.which("pdflatex")
+Sys.which("tlmgr")
+tinytex::tinytex_root()
+system("biber --version")
+
 coefs <- coef(m2)
 vcv <- vcov(m2)
 
@@ -87,19 +92,27 @@ me_df_p <- tibble(
 
 # Tables --------------------------------------------------------------------------------------------
 
+add_line <- function(path, line, after = 1) {
+  x <- readLines(path)
+  x <- append(x, line, after = after)
+  writeLines(x, path)
+}
+
 # LPM models
 modelsummary(
   list("Baseline" = m1, "Interaction" = m2), 
   stars  = TRUE, 
-  output = "aqmss2/tables/lpm.tex"
+  output = "19303-aqmss2_19307-pe/tables/lpm.tex"
 )
+add_line("19303-aqmss2_19307-pe/tables/lpm.tex", "\\caption{LPM Results}")
 
 # Poisson models
 modelsummary(
   list("Baseline" = mP1, "Interaction" = mP2), 
   stars  = TRUE, 
-  output = "aqmss2/tables/poisson.tex"
+  output = "19303-aqmss2_19307-pe/tables/poisson.tex"
 )
+add_line("19303-aqmss2_19307-pe/tables/poisson.tex", "\\caption{Poisson Regression Model Results}")
 
 # Descriptives
 panel %>%
@@ -111,8 +124,9 @@ panel %>%
     `CCT Payment` + `Relative Deprivation` ~ N + Mean + SD + Median + Min + Max,
     data   = .,
     fmt    = 2,
-    output = "aqmss2/tables/descriptives.tex"
+    output = "19303-aqmss2_19307-pe/tables/descriptives.tex"
   )
+add_line("19303-aqmss2_19307-pe/tables/descriptives.tex", "\\caption{Descriptives}")
 
 # Plots ---------------------------------------------------------------------------------------------
 
@@ -132,7 +146,7 @@ ggplot(me_df, aes(x = rd, y = ME)) +
   labs(x = "Relative Deprivation", y = "Marginal Effect") +
   theme_minimal()
 
-ggsave("aqmss2/figures/me_lpm.pdf")
+ggsave("19303-aqmss2_19307-pe/figures/me_lpm.pdf")
 
 # Poisson interaction
 
@@ -150,7 +164,7 @@ ggplot(me_df_p, aes(x = rd, y = ME)) +
   labs(x = "Relative Deprivation", y = "Incidence Rate Ratio") +
   theme_minimal()
 
-ggsave("aqmss2/figures/me_poisson.pdf")
+ggsave("19303-aqmss2_19307-pe/figures/me_poisson.pdf")
 
 # Diagnostics ---------------------------------------------------------------------------------------
 

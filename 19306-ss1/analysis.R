@@ -87,6 +87,26 @@ coeftest(interaction2_c, vcov = vcovHC(interaction2_c, type = "HC3"))
 
 # Tables --------------------------------------------------------------------------------------
 
+add_line <- function(path, line, after = 1) {
+  x <- readLines(path)
+  x <- append(x, line, after = after)
+  writeLines(x, path)
+}
+
+scale_table <- function(path, scale = 0.65) {
+  x <- readLines(path)
+  if (any(grepl("\\\\scalebox", x))) return(invisible(NULL))
+
+  b <- grep("^\\\\begin\\{(talltblr|tblr)\\}", x)[1]
+  e <- tail(grep("^\\\\end\\{(talltblr|tblr)\\}", x), 1)
+
+  x[e] <- paste0(x[e], "%")                       # end of table, suppress space
+  x <- append(x, "}", after = e)                  # close \scalebox
+  x <- append(x, paste0("\\scalebox{", scale, "}{%"), after = b - 1)  # open before \begin{talltblr}
+
+  writeLines(x, path)
+}
+
 modelsummary(
   list(
     "Main" = main, 
@@ -108,8 +128,10 @@ modelsummary(
     "id01_c:id02_c" = "Relative Deprivation, centred × Class, centred",
     "vg10:id02_c" = "Risk Aversion × Class, centred"
   ),
-  output  = "ss1/tables/coefficients.tex"
+  output  = "19306-ss1/tables/coefficients.tex"
 )
+add_line("19306-ss1/tables/coefficients.tex", "\\caption{Coefficients}")
+scale_table("19306-ss1/tables/coefficients.tex", scale = 0.65)
 
 # Plots ---------------------------------------------------------------------------------------
 
@@ -128,7 +150,7 @@ riskav <- ggplot(df_final, aes(x = factor(vg10), y = pa01)) +
   theme_minimal()
 
 ggsave(
-  "ss1/figures/main.pdf", 
+  "19306-ss1/figures/main.pdf", 
   plot = arrangeGrob(reldepr, riskav, ncol = 1),
   width = 14, height = 12
 )
@@ -152,7 +174,7 @@ riskav_int <- interact_plot(interaction2_c,
   theme_minimal()
 
 ggsave(
-  "ss1/figures/inter.pdf", 
+  "19306-ss1/figures/inter.pdf", 
   plot = arrangeGrob(reldepr_int, riskav_int, ncol = 1),
   width = 14, height = 12
 )
